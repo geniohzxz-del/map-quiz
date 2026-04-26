@@ -9,64 +9,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f2ece0; --surface:#e8e0d0; --card:#faf6ee; --border:#c4b89a;
-  --text:#2a2010; --muted:#7a6e56; --accent:#1a5fa8;
-  --green:#1a7a3a; --green-land:#4cc870;
-  --red:#c0392b; --red-land:#e05a4a;
-  --gold:#8a6a0a; --small:#c44a08;
+  --bg:#f2ece0;--surface:#e8e0d0;--card:#faf6ee;--border:#c4b89a;
+  --text:#2a2010;--muted:#7a6e56;--accent:#1a5fa8;
+  --green:#1a7a3a;--green-land:#4cc870;
+  --red:#c0392b;--red-land:#e05a4a;
+  --gold:#8a6a0a;--small:#c44a08;
   --water:#b8d4ee;
-  --land-in:#bdd0e0; --land-in-h:#9abcda;
-  --land-out:#d8ceb8; --land-disp:#c8bea8;
-  --land-b:#7aaace; --land-b-out:#b0a488;
+  --land-in:#bdd0e0;--land-in-h:#9abcda;
+  --land-out:#d8ceb8;--land-disp:#c8bea8;
+  --land-b:#7aaace;--land-b-out:#b0a488;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;min-height:100vh;overflow-x:hidden;}
-
 .page{max-width:500px;margin:0 auto;padding:0 0 24px;}
-
 header{text-align:center;padding:13px 12px 9px;background:var(--card);border-bottom:2px solid var(--border);}
 header h1{font-size:clamp(1rem,4vw,1.45rem);color:var(--accent);font-weight:700;}
 header p{color:var(--muted);font-size:.7rem;margin-top:2px;}
-
 .cont-tabs{display:flex;justify-content:center;gap:5px;padding:9px 8px 0;flex-wrap:wrap;}
-.ctab{padding:6px 13px;border-radius:18px;border:1.5px solid var(--border);
-background:var(--surface);color:var(--muted);font-size:.78rem;font-weight:700;
-cursor:pointer;transition:all .16s;font-family:'Noto Sans TC',sans-serif;}
+.ctab{padding:6px 13px;border-radius:18px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .16s;font-family:'Noto Sans TC',sans-serif;}
 .ctab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-
 .map-section{padding:8px 8px 0;}
 .map-hd{font-size:.68rem;color:var(--muted);text-align:center;margin-bottom:3px;font-weight:600;}
 .map-wrap{position:relative;background:var(--card);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;}
 .map-wrap svg{display:block;width:100%;cursor:grab;}
 .map-wrap svg:active{cursor:grabbing;}
 .map-wrap.quiz-on{border-color:var(--accent);box-shadow:0 0 0 2px rgba(26,95,168,.22);}
-
 .zoom-row{position:absolute;bottom:7px;right:7px;display:flex;flex-direction:column;gap:3px;z-index:20;}
-.zoom-row button{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);
-background:rgba(250,246,238,.92);color:var(--text);font-size:1rem;
-cursor:pointer;display:flex;align-items:center;justify-content:center;
-box-shadow:0 1px 4px #0002;font-weight:700;}
+.zoom-row button{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:rgba(250,246,238,.92);color:var(--text);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px #0002;font-weight:700;}
 .zoom-row button:active{background:var(--surface);}
-
-.legend{position:absolute;bottom:7px;left:7px;background:rgba(250,246,238,.93);
-border:1px solid var(--border);border-radius:6px;padding:4px 7px;
-font-size:.62rem;color:var(--text);z-index:20;line-height:1.9;}
+.legend{position:absolute;bottom:7px;left:7px;background:rgba(250,246,238,.93);border:1px solid var(--border);border-radius:6px;padding:4px 7px;font-size:.62rem;color:var(--text);z-index:20;line-height:1.9;}
 .ldot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle;}
-
-.maptip{position:absolute;background:var(--accent);color:#fff;border-radius:5px;
-padding:3px 9px;font-size:.78rem;font-weight:700;pointer-events:none;
-z-index:30;white-space:nowrap;opacity:0;transition:opacity .1s;top:7px;left:7px;}
-
-.loading{display:flex;align-items:center;justify-content:center;
-padding:48px 16px;color:var(--muted);font-size:.84rem;}
-
+.maptip{position:absolute;background:var(--accent);color:#fff;border-radius:5px;padding:3px 9px;font-size:.78rem;font-weight:700;pointer-events:none;z-index:30;white-space:nowrap;opacity:0;transition:opacity .1s;top:7px;left:7px;}
+.loading{display:flex;align-items:center;justify-content:center;padding:48px 16px;color:var(--muted);font-size:.84rem;}
 .water{fill:var(--water);}
 .land-out{fill:var(--land-out);stroke:var(--land-b-out);stroke-width:.35;pointer-events:none;}
 .land-disp{fill:var(--land-disp);stroke:var(--land-b-out);stroke-width:.4;pointer-events:none;}
-.disp-lbl{
-font-size:13px;fill:#4a3e28;text-anchor:middle;dominant-baseline:central;
-paint-order:stroke fill;stroke:rgba(232,224,208,.85);stroke-width:4;
-pointer-events:none;font-family:'Noto Sans TC',sans-serif;font-weight:700;}
+.disp-lbl{font-size:13px;fill:#4a3e28;text-anchor:middle;dominant-baseline:central;paint-order:stroke fill;stroke:rgba(232,224,208,.85);stroke-width:4;pointer-events:none;font-family:'Noto Sans TC',sans-serif;font-weight:700;}
 .land-in{fill:var(--land-in);stroke:var(--land-b);stroke-width:.65;cursor:pointer;transition:fill .12s;}
 .land-in:hover{fill:var(--land-in-h);}
 .land-correct{fill:#58d880 !important;stroke:#1a7a3a !important;stroke-width:.9 !important;}
@@ -74,84 +52,66 @@ pointer-events:none;font-family:'Noto Sans TC',sans-serif;font-weight:700;}
 .land-reveal{fill:#e06050 !important;stroke:var(--red) !important;stroke-width:1.8 !important;}
 .borders{fill:none;stroke:var(--land-b);stroke-width:.45;pointer-events:none;}
 .dot-sm{stroke:#fff;stroke-width:.8;cursor:pointer;transition:fill .12s;}
-.lbl-sm{font-size:7.5px;fill:#1a3050;text-anchor:middle;dominant-baseline:central;
-paint-order:stroke fill;stroke:rgba(200,216,230,.85);stroke-width:3;pointer-events:none;
-font-family:'Noto Sans TC',sans-serif;font-weight:700;}
-.lbl-lg{font-size:9px;fill:#1a3050;text-anchor:middle;dominant-baseline:central;
-paint-order:stroke fill;stroke:rgba(200,216,230,.82);stroke-width:3;pointer-events:none;
-font-family:'Noto Sans TC',sans-serif;font-weight:700;}
-
+.lbl-sm{font-size:7.5px;fill:#1a3050;text-anchor:middle;dominant-baseline:central;paint-order:stroke fill;stroke:rgba(200,216,230,.85);stroke-width:3;pointer-events:none;font-family:'Noto Sans TC',sans-serif;font-weight:700;}
+.lbl-lg{font-size:9px;fill:#1a3050;text-anchor:middle;dominant-baseline:central;paint-order:stroke fill;stroke:rgba(200,216,230,.82);stroke-width:3;pointer-events:none;font-family:'Noto Sans TC',sans-serif;font-weight:700;}
 .quiz-section{padding:8px 8px 0;}
 .quiz-box{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:12px;}
 .name-row{display:flex;gap:6px;margin-bottom:10px;}
-.name-row input{flex:1;padding:7px 10px;border-radius:7px;border:1.5px solid var(--border);
-background:var(--surface);color:var(--text);font-size:.88rem;font-family:'Noto Sans TC',sans-serif;}
+.name-row input{flex:1;padding:7px 10px;border-radius:7px;border:1.5px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem;font-family:'Noto Sans TC',sans-serif;}
 .name-row input:focus{outline:none;border-color:var(--accent);}
-.btn{padding:7px 14px;border-radius:7px;border:none;cursor:pointer;font-size:.84rem;font-weight:700;
-font-family:'Noto Sans TC',sans-serif;transition:opacity .14s;}
+.btn{padding:7px 14px;border-radius:7px;border:none;cursor:pointer;font-size:.84rem;font-weight:700;font-family:'Noto Sans TC',sans-serif;transition:opacity .14s;}
 .btn:active{opacity:.72;}
 .bp{background:var(--accent);color:#fff;}
 .bd{background:var(--red);color:#fff;}
 .bg{background:var(--border);color:var(--text);}
 .bsk{background:var(--surface);color:var(--muted);font-size:.76rem;padding:5px 10px;border:1px solid var(--border);}
-
 .stats{display:flex;gap:5px;margin-bottom:9px;}
 .sbox{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:5px;text-align:center;}
 .sl{font-size:.58rem;color:var(--muted);}
 .sv{font-size:.95rem;font-weight:700;margin-top:1px;}
-
-.qbox{background:var(--surface);border:1.5px solid var(--accent);border-radius:9px;
-padding:10px;text-align:center;margin-bottom:7px;}
+.qbox{background:var(--surface);border:1.5px solid var(--accent);border-radius:9px;padding:10px;text-align:center;margin-bottom:7px;}
 .qp{font-size:.68rem;color:var(--muted);margin-bottom:2px;}
 .qn{font-size:clamp(1rem,5vw,1.5rem);font-weight:700;color:var(--accent);}
 .streak{font-size:.7rem;color:var(--gold);margin-top:3px;}
-
-.fb{display:none;text-align:center;font-size:.82rem;font-weight:700;
-padding:6px 9px;border-radius:7px;margin-bottom:7px;line-height:1.45;}
-.fb.ok  {background:#d0f0de;color:#145228;border:1px solid #80d09a;display:block;}
-.fb.bad {background:#fce8e6;color:#7a1a12;border:1px solid #f0a09a;display:block;}
+.fb{display:none;text-align:center;font-size:.82rem;font-weight:700;padding:6px 9px;border-radius:7px;margin-bottom:7px;line-height:1.45;}
+.fb.ok{background:#d0f0de;color:#145228;border:1px solid #80d09a;display:block;}
+.fb.bad{background:#fce8e6;color:#7a1a12;border:1px solid #f0a09a;display:block;}
 .fb.hint{background:#fef4e2;color:#6a4008;border:1px solid #e8c060;display:block;}
-
 .arow{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px;}
-
 .lb-section{padding:8px 8px 0;}
 .lb-box{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:11px;}
 .lb-box h2{font-size:.88rem;margin-bottom:7px;}
+.lb-tabs{display:flex;gap:4px;margin-bottom:8px;}
+.lbtab{padding:4px 10px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:.72rem;font-weight:700;cursor:pointer;font-family:'Noto Sans TC',sans-serif;}
+.lbtab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
 table{width:100%;border-collapse:collapse;font-size:.75rem;}
 th{color:var(--muted);font-weight:600;text-align:left;padding:3px 4px;border-bottom:1px solid var(--border);}
 td{padding:4px 4px;border-bottom:1px solid var(--surface);}
 tr:last-child td{border:none;}
-
-.rov{display:none;position:fixed;inset:0;background:#0007;z-index:100;
-align-items:center;justify-content:center;padding:16px;}
+.rov{display:none;position:fixed;inset:0;background:#0007;z-index:100;align-items:center;justify-content:center;padding:16px;}
 .rov.show{display:flex;}
-.rcard{background:var(--card);border:1.5px solid var(--border);border-radius:14px;
-padding:22px 18px;text-align:center;max-width:320px;width:100%;}
+.rcard{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:22px 18px;text-align:center;max-width:320px;width:100%;}
 .rcard .em{font-size:1.9rem;}
 .rcard h2{font-size:1.1rem;margin:5px 0 2px;}
 .rcard p{color:var(--muted);font-size:.78rem;margin-bottom:12px;}
 .sbig{font-size:1.7rem;font-weight:700;color:var(--gold);}
 .rbtns{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
-
-footer{text-align:center;padding:12px;color:var(--muted);font-size:.65rem;
-border-top:1px solid var(--border);margin-top:8px;}
+footer{text-align:center;padding:12px;color:var(--muted);font-size:.65rem;border-top:1px solid var(--border);margin-top:8px;}
 </style>
 </head>
 <body>
 <div class="page">
-
 <header>
   <h1 id="mainTitle">🌏 亞洲地圖測驗</h1>
   <p>點選洲別切換，先在學習地圖記熟，再挑戰測驗地圖</p>
 </header>
-
 <div class="cont-tabs">
   <button class="ctab active" onclick="switchContinent('asia',this)">🌏 亞洲</button>
   <button class="ctab" onclick="switchContinent('europe',this)">🌍 歐洲</button>
   <button class="ctab" onclick="switchContinent('africa',this)">🌍 非洲</button>
   <button class="ctab" onclick="switchContinent('americas',this)">🌎 中南美</button>
+  <button class="ctab" onclick="switchContinent('all',this)">🌐 全部</button>
 </div>
-
 <div class="map-section">
   <div class="map-hd">📖 學習地圖｜有國家名稱，點擊可查看</div>
   <div class="map-wrap" id="learnWrap">
@@ -169,7 +129,6 @@ border-top:1px solid var(--border);margin-top:8px;}
     <div class="maptip" id="learnTip"></div>
   </div>
 </div>
-
 <div class="quiz-section">
 <div class="quiz-box">
   <div class="name-row">
@@ -194,7 +153,6 @@ border-top:1px solid var(--border);margin-top:8px;}
   </div>
 </div>
 </div>
-
 <div class="map-section" style="padding-top:6px;">
   <div class="map-hd">🎯 測驗地圖｜無名稱，點擊作答</div>
   <div class="map-wrap quiz-on" id="quizWrap">
@@ -208,20 +166,21 @@ border-top:1px solid var(--border);margin-top:8px;}
     <div class="maptip" id="quizTip"></div>
   </div>
 </div>
-
 <div class="lb-section">
 <div class="lb-box">
-  <h2>🏅 排行榜</h2>
-  <table><thead><tr><th>#</th><th>玩家</th><th>洲</th><th>得分</th><th>時間</th></tr></thead>
-  <tbody id="lbBody"><tr><td colspan="5" style="color:var(--muted);text-align:center">尚無紀錄</td></tr></tbody></table>
-  <div style="text-align:right;margin-top:7px">
-    <button class="btn bg" style="font-size:.7rem;padding:4px 9px" onclick="clearLB()">清除紀錄</button>
+  <h2>🏅 排行榜 <span id="lbStatus" style="font-size:.65rem;color:var(--muted);font-weight:400"></span></h2>
+  <div class="lb-tabs">
+    <button class="lbtab active" onclick="switchLB('all',this)">🌐 全部</button>
+    <button class="lbtab" onclick="switchLB('asia',this)">🌏 亞洲</button>
+    <button class="lbtab" onclick="switchLB('europe',this)">🌍 歐洲</button>
+    <button class="lbtab" onclick="switchLB('africa',this)">🌍 非洲</button>
+    <button class="lbtab" onclick="switchLB('americas',this)">🌎 中南美</button>
   </div>
+  <table><thead><tr><th>#</th><th>玩家</th><th>洲</th><th>得分</th><th>時間</th></tr></thead>
+  <tbody id="lbBody"><tr><td colspan="5" style="color:var(--muted);text-align:center">載入中…</td></tr></tbody></table>
 </div>
 </div>
-
 </div>
-
 <div class="rov" id="rov">
   <div class="rcard">
     <div class="em">🎉</div><h2>挑戰完成！</h2>
@@ -233,234 +192,218 @@ border-top:1px solid var(--border);margin-top:8px;}
     </div>
   </div>
 </div>
+<footer>Natural Earth · TopoJSON World Atlas v2 · 排行榜由 Firebase 提供</footer>
 
-<footer>Natural Earth · TopoJSON World Atlas v2</footer>
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, query, orderBy, limit, where, onSnapshot, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDFUxNrJdH8kje0CJd0r46V2mgCbcDJN6E",
+  authDomain: "world-map-quiz-4b2bd.firebaseapp.com",
+  projectId: "world-map-quiz-4b2bd",
+  storageBucket: "world-map-quiz-4b2bd.firebasestorage.app",
+  messagingSenderId: "803895232552",
+  appId: "1:803895232552:web:1826a553ea3d619a1b8d1d",
+  measurementId: "G-WB5XPV63LW"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// expose to global
+window._db = db;
+window._col = collection(db, "leaderboard");
+window._fs = { collection, addDoc, query, orderBy, limit, where, onSnapshot, serverTimestamp };
+
+document.getElementById("lbStatus").textContent = "☁️ 雲端";
+window._fbReady = true;
+window.renderLB(window._lbFilter || "all");
+</script>
 
 <script>
-const DISPLAY_ONLY = {
-  asia:    [{iso:"643",n:"俄羅斯",lp:[80,62]}],
-  europe:  [{iso:"643",n:"俄羅斯",lp:[55,62]}],
-  africa:  [],
-  americas:[
-    {iso:"840",n:"美國",  lp:[-97,38]},
-    {iso:"124",n:"加拿大",lp:[-96,57]},
-  ],
+// ── DISPLAY ONLY & EXTRA LABELS ──
+const DISPLAY_ONLY={
+  asia:[{iso:"643",n:"俄羅斯",lp:[80,62]}],
+  europe:[{iso:"643",n:"俄羅斯",lp:[55,62]}],
+  africa:[],
+  americas:[{iso:"840",n:"美國",lp:[-97,38]},{iso:"124",n:"加拿大",lp:[-96,57]}],
 };
-const EXTRA_LABELS = {
-  asia:    [],
-  europe:  [],
-  africa:  [],
+const EXTRA_LABELS={
+  asia:[],europe:[],africa:[],
   americas:[{n:"阿拉斯加\n（美國）",lp:[-153,64]}],
 };
 
-const CONTINENTS = {
-  asia:{
-    label:"亞洲",emoji:"🌏",
-    cfg:{cx:[90,28],sc:380,vw:800,vh:500},
-    bigLbl:{"360":14.5},
+// ── CONTINENT DATA ──
+const CONTINENTS={
+  asia:{label:"亞洲",emoji:"🌏",cfg:{cx:[90,28],sc:380,vw:800,vh:500},bigLbl:{"360":14.5},
     countries:[
-      {iso:"156",n:"中國",sm:false},{iso:"496",n:"蒙古",sm:false},
-      {iso:"392",n:"日本",sm:false},{iso:"410",n:"南韓",sm:false},
-      {iso:"408",n:"北韓",sm:false},{iso:"158",n:"台灣",sm:true},
-      {iso:"704",n:"越南",sm:false},{iso:"764",n:"泰國",sm:false},
-      {iso:"104",n:"緬甸",sm:false},{iso:"116",n:"柬埔寨",sm:false},
-      {iso:"418",n:"寮國",sm:false},{iso:"458",n:"馬來西亞",sm:false},
-      {iso:"360",n:"印尼",sm:false},{iso:"608",n:"菲律賓",sm:false},
-      {iso:"702",n:"新加坡",sm:true},{iso:"096",n:"汶萊",sm:true},
-      {iso:"626",n:"東帝汶",sm:true},
-      {iso:"356",n:"印度",sm:false},{iso:"586",n:"巴基斯坦",sm:false},
-      {iso:"050",n:"孟加拉",sm:false},{iso:"524",n:"尼泊爾",sm:false},
-      {iso:"064",n:"不丹",sm:true},{iso:"144",n:"斯里蘭卡",sm:true},
-      {iso:"462",n:"馬爾地夫",sm:true},{iso:"004",n:"阿富汗",sm:false},
-      {iso:"398",n:"哈薩克",sm:false},{iso:"860",n:"烏茲別克",sm:false},
-      {iso:"795",n:"土庫曼",sm:false},{iso:"417",n:"吉爾吉斯",sm:false},
-      {iso:"762",n:"塔吉克",sm:false},
-      {iso:"364",n:"伊朗",sm:false},{iso:"368",n:"伊拉克",sm:false},
-      {iso:"792",n:"土耳其",sm:false},{iso:"760",n:"敘利亞",sm:false},
-      {iso:"422",n:"黎巴嫩",sm:true},{iso:"400",n:"約旦",sm:false},
-      {iso:"376",n:"以色列",sm:true},{iso:"682",n:"沙烏地阿拉伯",sm:false},
-      {iso:"887",n:"葉門",sm:false},{iso:"512",n:"阿曼",sm:false},
-      {iso:"784",n:"阿聯",sm:true},{iso:"634",n:"卡達",sm:true},
-      {iso:"048",n:"巴林",sm:true},{iso:"414",n:"科威特",sm:true},
-      {iso:"196",n:"賽普勒斯",sm:true},{iso:"051",n:"亞美尼亞",sm:true},
-      {iso:"031",n:"亞塞拜然",sm:true},{iso:"268",n:"喬治亞",sm:false},
+      {iso:"156",n:"中國",sm:false},{iso:"496",n:"蒙古",sm:false},{iso:"392",n:"日本",sm:false},
+      {iso:"410",n:"南韓",sm:false},{iso:"408",n:"北韓",sm:false},{iso:"158",n:"台灣",sm:true},
+      {iso:"704",n:"越南",sm:false},{iso:"764",n:"泰國",sm:false},{iso:"104",n:"緬甸",sm:false},
+      {iso:"116",n:"柬埔寨",sm:false},{iso:"418",n:"寮國",sm:false},{iso:"458",n:"馬來西亞",sm:false},
+      {iso:"360",n:"印尼",sm:false},{iso:"608",n:"菲律賓",sm:false},{iso:"702",n:"新加坡",sm:true},
+      {iso:"096",n:"汶萊",sm:true},{iso:"626",n:"東帝汶",sm:true},{iso:"356",n:"印度",sm:false},
+      {iso:"586",n:"巴基斯坦",sm:false},{iso:"050",n:"孟加拉",sm:false},{iso:"524",n:"尼泊爾",sm:false},
+      {iso:"064",n:"不丹",sm:true},{iso:"144",n:"斯里蘭卡",sm:true},{iso:"462",n:"馬爾地夫",sm:true},
+      {iso:"004",n:"阿富汗",sm:false},{iso:"398",n:"哈薩克",sm:false},{iso:"860",n:"烏茲別克",sm:false},
+      {iso:"795",n:"土庫曼",sm:false},{iso:"417",n:"吉爾吉斯",sm:false},{iso:"762",n:"塔吉克",sm:false},
+      {iso:"364",n:"伊朗",sm:false},{iso:"368",n:"伊拉克",sm:false},{iso:"792",n:"土耳其",sm:false},
+      {iso:"760",n:"敘利亞",sm:false},{iso:"422",n:"黎巴嫩",sm:true},{iso:"400",n:"約旦",sm:false},
+      {iso:"376",n:"以色列",sm:true},{iso:"682",n:"沙烏地阿拉伯",sm:false},{iso:"887",n:"葉門",sm:false},
+      {iso:"512",n:"阿曼",sm:false},{iso:"784",n:"阿拉伯聯合大公國",sm:true},{iso:"634",n:"卡達",sm:true},
+      {iso:"048",n:"巴林",sm:true},{iso:"414",n:"科威特",sm:true},{iso:"196",n:"賽普勒斯",sm:true},
+      {iso:"051",n:"亞美尼亞",sm:true},{iso:"031",n:"亞塞拜然",sm:true},{iso:"268",n:"喬治亞",sm:false},
     ],
-    latlng:{
-      "158":[120.9,23.7],"702":[103.8,1.35],"096":[114.7,4.9],
-      "626":[125.7,-8.8],"064":[90.4,27.5],"144":[80.7,7.9],
-      "462":[73.2,3.2],"422":[35.9,33.9],"376":[34.9,31.4],
-      "784":[54.5,24.5],"634":[51.2,25.3],"048":[50.3,26.2],
-      "414":[47.5,29.3],"196":[33.0,35.1],"051":[44.5,40.0],"031":[47.6,40.3],
-    },
-    labelOff:{
-      "422":[-17,+10,true,true],"376":[-34,10,true],"051":[-48,-8,true],
-      "031":[42,0,true],"634":[36,-20,true],"048":[-32,-16,true],
-      "414":[-36,-8,true],"196":[-44,-8,true],"064":[32,-18,true],
-      "702":[32,0,true],"096":[32,0,true],"462":[-38,0,true],"784":[-36,12,true],
-    },
-    labelPos:{
-      "156":[104,35],"496":[103,46],"392":[138,37],"410":[127.5,36],"408":[126.5,39],
+    latlng:{"158":[120.9,23.7],"702":[103.8,1.35],"096":[114.7,4.9],"626":[125.7,-8.8],
+      "064":[90.4,27.5],"144":[80.7,7.9],"462":[73.2,3.2],"422":[35.9,33.9],"376":[34.9,31.4],
+      "784":[54.5,24.5],"634":[51.2,25.3],"048":[50.3,26.2],"414":[47.5,29.3],
+      "196":[33.0,35.1],"051":[44.5,40.0],"031":[47.6,40.3]},
+    labelOff:{"422":[-17,+10,true,true],"376":[-34,10,true],"051":[-48,-8,true],"031":[42,0,true],
+      "634":[36,-20,true],"048":[-32,-16,true],"414":[-36,-8,true],"196":[-44,-8,true],
+      "064":[32,-18,true],"702":[32,0,true],"096":[32,0,true],"462":[-38,0,true],"784":[38,-4,true]},smFontSize:{"784":5.5},
+    labelPos:{"156":[104,35],"496":[103,46],"392":[138,37],"410":[127.5,36],"408":[126.5,39],
       "704":[109.1,16],"764":[101,15],"104":[96,20],"116":[105,12],"418":[103,18],
-      "458":[110,4],"360":[117,-2],"608":[122,12],
-      "356":[79,22],"586":[68,30],"050":[90,23.5],"524":[84,28],"004":[66,33],
-      "398":[67,48],"860":[63,41],"795":[58,40],"417":[74,41],"762":[71,39],
-      "364":[54,32],"368":[44,33],"792":[35,39],"760":[38,36.2],
-      "400":[37.8,31],"682":[45,24],"887":[48,16],"512":[57,22],"268":[43,42],
-    }
-  },
-  europe:{
-    label:"歐洲",emoji:"🌍",
-    cfg:{cx:[15,52],sc:700,vw:800,vh:540},
+      "458":[110,4],"360":[117,-2],"608":[122,12],"356":[79,22],"586":[68,30],
+      "050":[90,23.5],"524":[84,28],"004":[66,33],"398":[67,48],"860":[63,41],
+      "795":[58,40],"417":[74,41],"762":[71,39],"364":[54,32],"368":[44,33],
+      "792":[35,39],"760":[38,36.2],"400":[37.8,31],"682":[45,24],"887":[48,16],
+      "512":[57,22],"268":[43,42]}},
+  europe:{label:"歐洲",emoji:"🌍",cfg:{cx:[15,52],sc:700,vw:800,vh:540},
     countries:[
-      {iso:"276",n:"德國",sm:false},{iso:"250",n:"法國",sm:false},
-      {iso:"380",n:"義大利",sm:false},{iso:"724",n:"西班牙",sm:false},
-      {iso:"620",n:"葡萄牙",sm:false},{iso:"528",n:"荷蘭",sm:false},
-      {iso:"056",n:"比利時",sm:true},{iso:"442",n:"盧森堡",sm:true},
-      {iso:"756",n:"瑞士",sm:false},{iso:"040",n:"奧地利",sm:false},
-      {iso:"616",n:"波蘭",sm:false},{iso:"203",n:"捷克",sm:false},
-      {iso:"703",n:"斯洛伐克",sm:false},{iso:"348",n:"匈牙利",sm:false},
-      {iso:"642",n:"羅馬尼亞",sm:false},{iso:"100",n:"保加利亞",sm:false},
-      {iso:"300",n:"希臘",sm:false},{iso:"191",n:"克羅埃西亞",sm:false},
-      {iso:"705",n:"斯洛維尼亞",sm:true},{iso:"070",n:"波赫",sm:false},
-      {iso:"688",n:"塞爾維亞",sm:false},{iso:"807",n:"北馬其頓",sm:false},
-      {iso:"008",n:"阿爾巴尼亞",sm:false},{iso:"499",n:"蒙特內哥羅",sm:true},
-      {iso:"246",n:"芬蘭",sm:false},{iso:"752",n:"瑞典",sm:false},
-      {iso:"578",n:"挪威",sm:false},{iso:"208",n:"丹麥",sm:false},
-      {iso:"372",n:"愛爾蘭",sm:false},{iso:"826",n:"英國",sm:false},
-      {iso:"233",n:"愛沙尼亞",sm:false},{iso:"428",n:"拉脫維亞",sm:false},
-      {iso:"440",n:"立陶宛",sm:false},{iso:"112",n:"白俄羅斯",sm:false},
-      {iso:"804",n:"烏克蘭",sm:false},{iso:"498",n:"摩爾多瓦",sm:false},
-      {iso:"352",n:"冰島",sm:false},{iso:"470",n:"馬爾他",sm:true},
-      {iso:"020",n:"安道爾",sm:true},
+      {iso:"276",n:"德國",sm:false},{iso:"250",n:"法國",sm:false},{iso:"380",n:"義大利",sm:false},
+      {iso:"724",n:"西班牙",sm:false},{iso:"620",n:"葡萄牙",sm:false},{iso:"528",n:"荷蘭",sm:false},
+      {iso:"056",n:"比利時",sm:true},{iso:"442",n:"盧森堡",sm:true},{iso:"756",n:"瑞士",sm:false},
+      {iso:"040",n:"奧地利",sm:false},{iso:"616",n:"波蘭",sm:false},{iso:"203",n:"捷克",sm:false},
+      {iso:"703",n:"斯洛伐克",sm:false},{iso:"348",n:"匈牙利",sm:false},{iso:"642",n:"羅馬尼亞",sm:false},
+      {iso:"100",n:"保加利亞",sm:false},{iso:"300",n:"希臘",sm:false},{iso:"191",n:"克羅埃西亞",sm:false},
+      {iso:"705",n:"斯洛維尼亞",sm:true},{iso:"070",n:"波赫",sm:false},{iso:"688",n:"塞爾維亞",sm:false},
+      {iso:"807",n:"北馬其頓",sm:false},{iso:"008",n:"阿爾巴尼亞",sm:false},{iso:"499",n:"蒙特內哥羅",sm:true},
+      {iso:"246",n:"芬蘭",sm:false},{iso:"752",n:"瑞典",sm:false},{iso:"578",n:"挪威",sm:false},
+      {iso:"208",n:"丹麥",sm:false},{iso:"372",n:"愛爾蘭",sm:false},{iso:"826",n:"英國",sm:false},
+      {iso:"233",n:"愛沙尼亞",sm:false},{iso:"428",n:"拉脫維亞",sm:false},{iso:"440",n:"立陶宛",sm:false},
+      {iso:"112",n:"白俄羅斯",sm:false},{iso:"804",n:"烏克蘭",sm:false},{iso:"498",n:"摩爾多瓦",sm:false},
+      {iso:"352",n:"冰島",sm:false},{iso:"470",n:"馬爾他",sm:true},{iso:"020",n:"安道爾",sm:true},
     ],
-    latlng:{
-      "056":[4.0,50.8],"442":[6.1,49.6],"705":[14.9,46.1],
-      "499":[19.2,42.4],"470":[14.4,35.9],"020":[1.6,42.5],
-    },
-    labelOff:{
-      "056":[0,-18,true],"442":[26,-16,true],"705":[30,0,true],
-      "499":[-34,-14,true],"470":[30,0,true],"020":[-30,0,true],
-    },
-    labelPos:{
-      "276":[10.4,51.2],"250":[2.3,46.2],"380":[12.6,42.5],"724":[-3.7,40.2],
+    latlng:{"056":[4.0,50.8],"442":[6.1,49.6],"705":[14.9,46.1],"499":[19.2,42.4],"470":[14.4,35.9],"020":[1.6,42.5]},
+    labelOff:{"056":[0,-18,true],"442":[26,-16,true],"705":[30,0,true],"499":[-34,-14,true],"470":[30,0,true],"020":[-30,0,true]},
+    labelPos:{"276":[10.4,51.2],"250":[2.3,46.2],"380":[12.6,42.5],"724":[-3.7,40.2],
       "620":[-8.2,39.5],"528":[5.3,52.3],"756":[8.3,46.8],"040":[14.5,47.5],
       "616":[19.1,51.9],"203":[15.5,49.8],"348":[19.5,47.2],"642":[24.9,45.9],
       "100":[25.5,42.8],"300":[21.8,39.1],"191":[15.5,45.2],"070":[17.5,44.2],
-      "688":[20.9,44.0],"807":[21.8,41.9],"008":[20.2,41.2],
-      "246":[25.7,64.0],"752":[18.6,60.1],"578":[10.0,61.0],"208":[10.0,56.0],
-      "372":[-8.0,53.2],"826":[-2.0,54.0],
-      "233":[25.0,58.6],"428":[24.9,56.9],"440":[23.9,56.0],
-      "112":[27.9,53.7],"804":[32.0,49.0],"498":[28.4,47.0],"352":[-18.5,65.0],
-    }
-  },
-  africa:{
-    label:"非洲",emoji:"🌍",
-    cfg:{cx:[20,5],sc:380,vw:800,vh:560},
+      "688":[20.9,44.0],"807":[21.8,41.9],"008":[20.2,41.2],"246":[25.7,64.0],
+      "752":[18.6,60.1],"578":[10.0,61.0],"208":[10.0,56.0],"372":[-8.0,53.2],
+      "826":[-2.0,54.0],"233":[25.0,58.6],"428":[24.9,56.9],"440":[23.9,56.0],
+      "112":[27.9,53.7],"804":[32.0,49.0],"498":[28.4,47.0],"352":[-18.5,65.0]}},
+  africa:{label:"非洲",emoji:"🌍",cfg:{cx:[20,5],sc:380,vw:800,vh:560},
     countries:[
-      {iso:"012",n:"阿爾及利亞",sm:false},{iso:"818",n:"埃及",sm:false},
-      {iso:"434",n:"利比亞",sm:false},{iso:"788",n:"突尼西亞",sm:false},
-      {iso:"504",n:"摩洛哥",sm:false},{iso:"729",n:"蘇丹",sm:false},
-      {iso:"706",n:"索馬利亞",sm:false},{iso:"231",n:"衣索比亞",sm:false},
-      {iso:"404",n:"肯亞",sm:false},{iso:"834",n:"坦尚尼亞",sm:false},
-      {iso:"800",n:"烏干達",sm:false},{iso:"646",n:"盧安達",sm:true},
-      {iso:"108",n:"蒲隆地",sm:true},{iso:"508",n:"莫三比克",sm:false},
-      {iso:"454",n:"馬拉威",sm:false},{iso:"716",n:"辛巴威",sm:false},
-      {iso:"894",n:"尚比亞",sm:false},{iso:"024",n:"安哥拉",sm:false},
-      {iso:"180",n:"剛果民主共和國",sm:false},{iso:"178",n:"剛果共和國",sm:false},
-      {iso:"266",n:"加彭",sm:false},{iso:"120",n:"喀麥隆",sm:false},
-      {iso:"566",n:"奈及利亞",sm:false},{iso:"288",n:"迦納",sm:false},
-      {iso:"384",n:"象牙海岸",sm:false},{iso:"324",n:"幾內亞",sm:false},
-      {iso:"686",n:"塞內加爾",sm:false},{iso:"466",n:"馬利",sm:false},
-      {iso:"854",n:"布吉納法索",sm:false},{iso:"562",n:"尼日",sm:false},
-      {iso:"148",n:"查德",sm:false},{iso:"736",n:"南蘇丹",sm:false},
-      {iso:"710",n:"南非",sm:false},{iso:"516",n:"納米比亞",sm:false},
-      {iso:"072",n:"波札那",sm:false},{iso:"748",n:"史瓦帝尼",sm:true},
-      {iso:"426",n:"賴索托",sm:true},{iso:"450",n:"馬達加斯加",sm:false},
+      {iso:"012",n:"阿爾及利亞",sm:false},{iso:"818",n:"埃及",sm:false},{iso:"434",n:"利比亞",sm:false},
+      {iso:"788",n:"突尼西亞",sm:false},{iso:"504",n:"摩洛哥",sm:false},{iso:"729",n:"蘇丹",sm:false},
+      {iso:"706",n:"索馬利亞",sm:false},{iso:"231",n:"衣索比亞",sm:false},{iso:"404",n:"肯亞",sm:false},
+      {iso:"834",n:"坦尚尼亞",sm:false},{iso:"800",n:"烏干達",sm:false},{iso:"646",n:"盧安達",sm:true},
+      {iso:"108",n:"蒲隆地",sm:true},{iso:"508",n:"莫三比克",sm:false},{iso:"454",n:"馬拉威",sm:false},
+      {iso:"716",n:"辛巴威",sm:false},{iso:"894",n:"尚比亞",sm:false},{iso:"024",n:"安哥拉",sm:false},
+      {iso:"180",n:"剛果民主共和國",sm:false},{iso:"178",n:"剛果共和國",sm:false},{iso:"266",n:"加彭",sm:false},
+      {iso:"120",n:"喀麥隆",sm:false},{iso:"566",n:"奈及利亞",sm:false},{iso:"288",n:"迦納",sm:false},
+      {iso:"384",n:"象牙海岸",sm:false},{iso:"324",n:"幾內亞",sm:false},{iso:"686",n:"塞內加爾",sm:false},
+      {iso:"466",n:"馬利",sm:false},{iso:"854",n:"布吉納法索",sm:false},{iso:"562",n:"尼日",sm:false},
+      {iso:"148",n:"查德",sm:false},{iso:"728",n:"南蘇丹",sm:false},{iso:"140",n:"中非",sm:false},
+      {iso:"232",n:"厄利垂亞",sm:false},{iso:"262",n:"吉布地",sm:true},
+      {iso:"478",n:"茅利塔尼亞",sm:false},{iso:"694",n:"獅子山",sm:false},{iso:"430",n:"賴比瑞亞",sm:false},
+      {iso:"710",n:"南非",sm:false},{iso:"516",n:"納米比亞",sm:false},{iso:"072",n:"波札那",sm:false},
+      {iso:"748",n:"史瓦帝尼",sm:true},{iso:"426",n:"賴索托",sm:true},{iso:"450",n:"馬達加斯加",sm:false},
       {iso:"174",n:"葛摩",sm:true},{iso:"480",n:"模里西斯",sm:true},
     ],
-    latlng:{
-      "646":[29.9,-1.9],"108":[29.9,-3.4],"748":[31.5,-26.5],
-      "426":[28.5,-30.8],"174":[43.4,-11.7],"480":[57.5,-20.2],
-    },
-    labelOff:{
-      "646":[30,0,true],"108":[30,12,true],"748":[32,0,true],
-      "426":[-40,18,true],"174":[32,0,true],"480":[32,0,true],
-    },
-    labelPos:{
-      "012":[3.0,28.0],"818":[30.0,26.5],"434":[17.0,27.0],"788":[9.5,33.9],
+    latlng:{"646":[29.9,-1.9],"108":[29.9,-3.4],"748":[31.5,-26.5],"426":[28.5,-30.8],"174":[43.4,-11.7],"480":[57.5,-20.2],"262":[43.1,11.5]},
+    labelOff:{"646":[30,0,true],"108":[38,0,true],"748":[32,0,true],"426":[-40,18,true],"174":[32,0,true],"480":[32,0,true],"262":[30,0,true]},
+    labelPos:{"012":[3.0,28.0],"818":[30.0,26.5],"434":[17.0,27.0],"788":[9.5,33.9],
       "504":[-5.5,31.8],"729":[30.0,15.0],"706":[46.2,6.0],"231":[40.5,9.0],
-      "404":[37.9,0.0],"834":[34.9,-6.4],"800":[32.3,1.4],
-      "508":[35.0,-18.0],"454":[34.3,-13.5],"716":[29.8,-19.0],
-      "894":[27.8,-13.5],"024":[17.9,-11.2],"180":[24.0,-3.0],"178":[15.8,-0.9],
-      "266":[9.5,-0.5],"120":[12.4,5.7],"566":[8.7,9.6],"288":[-1.0,7.9],
-      "384":[-5.5,7.5],"324":[-11.4,11.0],"686":[-14.5,14.5],"466":[-2.0,17.5],
-      "854":[-1.5,12.4],"562":[8.0,17.0],"148":[18.7,15.5],"736":[30.5,7.5],
-      "710":[25.0,-27.5],"516":[18.5,-22.5],"072":[24.5,-22.5],"450":[46.9,-19.4],
-    }
-  },
-  americas:{
-    label:"中南美洲",emoji:"🌎",
-    cfg:{cx:[-60,-15],sc:380,vw:800,vh:580},
-    smallLbl:{"558":true},
-    lockedLbl:{"340":true},
+      "404":[37.9,0.0],"834":[34.9,-6.4],"800":[32.3,1.4],"508":[35.0,-18.0],
+      "454":[34.3,-13.5],"716":[29.8,-19.0],"894":[27.8,-13.5],"024":[17.9,-11.2],
+      "180":[24.0,-3.0],"178":[15.8,-0.9],"266":[9.5,-0.5],"120":[12.4,5.7],
+      "566":[8.7,9.6],"288":[-1.0,7.9],"384":[-5.5,7.5],"324":[-11.4,11.0],
+      "686":[-14.5,14.5],"466":[-2.0,17.5],"854":[-1.5,12.4],"562":[8.0,17.0],
+      "148":[18.7,15.5],"728":[30.5,7.5],"140":[19.0,6.5],"232":[38.5,15.5],
+      "478":[-10.5,20.5],"694":[-11.8,8.5],"430":[-9.5,6.3],
+      "710":[25.0,-27.5],"516":[18.5,-22.5],"072":[24.5,-22.5],"450":[46.9,-19.4]}},
+  americas:{label:"中南美洲",emoji:"🌎",cfg:{cx:[-60,-15],sc:380,vw:800,vh:580},
+    smallLbl:{"558":true},lockedLbl:{"340":true},
     countries:[
-      {iso:"484",n:"墨西哥",sm:false},{iso:"320",n:"瓜地馬拉",sm:false},
-      {iso:"340",n:"宏都拉斯",sm:false},{iso:"222",n:"薩爾瓦多",sm:true},
-      {iso:"558",n:"尼加拉瓜",sm:false},{iso:"188",n:"哥斯大黎加",sm:false},
-      {iso:"591",n:"巴拿馬",sm:false},{iso:"192",n:"古巴",sm:false},
-      {iso:"332",n:"海地",sm:false},{iso:"214",n:"多明尼加",sm:false},
-      {iso:"388",n:"牙買加",sm:true},{iso:"170",n:"哥倫比亞",sm:false},
-      {iso:"862",n:"委內瑞拉",sm:false},{iso:"328",n:"蓋亞那",sm:false},
-      {iso:"740",n:"蘇利南",sm:false},{iso:"218",n:"厄瓜多",sm:false},
-      {iso:"604",n:"秘魯",sm:false},{iso:"076",n:"巴西",sm:false},
-      {iso:"068",n:"玻利維亞",sm:false},{iso:"600",n:"巴拉圭",sm:false},
-      {iso:"152",n:"智利",sm:false},{iso:"032",n:"阿根廷",sm:false},
-      {iso:"858",n:"烏拉圭",sm:false},
+      {iso:"484",n:"墨西哥",sm:false},{iso:"320",n:"瓜地馬拉",sm:false},{iso:"340",n:"宏都拉斯",sm:false},
+      {iso:"222",n:"薩爾瓦多",sm:true},{iso:"558",n:"尼加拉瓜",sm:false},{iso:"188",n:"哥斯大黎加",sm:false},
+      {iso:"591",n:"巴拿馬",sm:false},{iso:"192",n:"古巴",sm:false},{iso:"332",n:"海地",sm:false},
+      {iso:"214",n:"多明尼加",sm:false},{iso:"388",n:"牙買加",sm:true},{iso:"170",n:"哥倫比亞",sm:false},
+      {iso:"862",n:"委內瑞拉",sm:false},{iso:"328",n:"蓋亞那",sm:false},{iso:"740",n:"蘇利南",sm:false},
+      {iso:"218",n:"厄瓜多",sm:false},{iso:"604",n:"秘魯",sm:false},{iso:"076",n:"巴西",sm:false},
+      {iso:"068",n:"玻利維亞",sm:false},{iso:"600",n:"巴拉圭",sm:false},{iso:"152",n:"智利",sm:false},
+      {iso:"032",n:"阿根廷",sm:false},{iso:"858",n:"烏拉圭",sm:false},
     ],
-    latlng:{
-      "222":[-88.9,13.7],"388":[-77.3,18.1],
-    },
-    labelOff:{
-      "222":[-23,+14,true,true],"388":[34,18,true],
-    },
-    labelPos:{
-      "484":[-102,23.6],"320":[-91.0,15.8],"340":[-83.9,16.6],
-      "558":[-83.5,12.8],"188":[-84.0,9.9],"591":[-80.0,8.4],
-      "192":[-80.5,22.5],"332":[-74.0,20.5],"214":[-70.5,18.3],
-      "170":[-74.0,4.0],"862":[-66.0,8.0],"328":[-59.0,6.4],
-      "740":[-56.0,4.0],"218":[-78.0,-2.0],"604":[-75.0,-10.0],
-      "076":[-52.0,-10.0],"068":[-64.7,-17.0],"600":[-58.0,-23.0],
-      "152":[-71.0,-35.0],"032":[-64.0,-34.0],"858":[-56.0,-32.9],
-    }
-  }
+    latlng:{"222":[-88.9,13.7],"388":[-77.3,18.1]},
+    labelOff:{"222":[-23,+14,true,true],"388":[34,18,true]},
+    labelPos:{"484":[-102,23.6],"320":[-91.0,15.8],"340":[-83.9,16.6],"558":[-83.5,12.8],
+      "188":[-84.0,9.9],"591":[-80.0,8.4],"192":[-80.5,22.5],"332":[-74.0,20.5],
+      "214":[-70.5,18.3],"170":[-74.0,4.0],"862":[-66.0,8.0],"328":[-59.0,6.4],
+      "740":[-56.0,4.0],"218":[-78.0,-2.0],"604":[-75.0,-10.0],"076":[-52.0,-10.0],
+      "068":[-64.7,-17.0],"600":[-58.0,-23.0],"152":[-71.0,-35.0],"032":[-64.0,-34.0],"858":[-56.0,-32.9]}},
 };
 
-let WF=null,WB=null;
-let CUR="asia";
-let ISO_MAP={};
-let DISP_ISO={};
+// ── ALL-CONTINENT COMBINED CONFIG ──
+// 全部模式才加入的國家（原本是 display-only 或未收錄）
+const ALL_EXTRA_COUNTRIES=[
+  {iso:"643",n:"俄羅斯", sm:false},
+  {iso:"840",n:"美國",   sm:false},
+  {iso:"124",n:"加拿大", sm:false},
+  {iso:"036",n:"澳洲",   sm:false},
+  {iso:"554",n:"紐西蘭", sm:false},
+  {iso:"598",n:"巴布亞紐幾內亞",sm:false},
+];
+const ALL_EXTRA_LABELPOS={
+  "643":[95,62],
+  "840":[-98,38],
+  "124":[-96,57],
+  "036":[134,-25],
+  "554":[172,-41],
+  "598":[150,-5],
+};
 
+function buildAllContinent(){
+  const keys=["asia","europe","africa","americas"];
+  const allCountries=[],allLatlng={},allLabelOff={},allLabelPos={};
+  const seen=new Set();
+  keys.forEach(k=>{
+    CONTINENTS[k].countries.forEach(c=>{if(!seen.has(c.iso)){seen.add(c.iso);allCountries.push(c);}});
+    Object.assign(allLatlng,CONTINENTS[k].latlng||{});
+    Object.assign(allLabelOff,CONTINENTS[k].labelOff||{});
+    Object.assign(allLabelPos,CONTINENTS[k].labelPos||{});
+  });
+  // 加入額外國家
+  ALL_EXTRA_COUNTRIES.forEach(c=>{if(!seen.has(c.iso)){seen.add(c.iso);allCountries.push(c);}});
+  Object.assign(allLabelPos,ALL_EXTRA_LABELPOS);
+  CONTINENTS["all"]={label:"世界",emoji:"🌐",cfg:{cx:[10,15],sc:145,vw:900,vh:480},countries:allCountries,latlng:allLatlng,labelOff:allLabelOff,labelPos:allLabelPos};
+  // 全部模式沒有 display-only（這些國家全都是考題）
+  DISPLAY_ONLY["all"]=[];
+  EXTRA_LABELS["all"]=[{n:"阿拉斯加\n（美國）",lp:[-153,64]}];
+}
+
+// ── STATE ──
+let WF=null,WB=null,CUR="asia",ISO_MAP={},DISP_ISO={};
 const ZL=d3.zoom().scaleExtent([0.3,15]).on("zoom",e=>{if(GL)GL.attr("transform",e.transform)});
 const ZQ=d3.zoom().scaleExtent([0.3,15]).on("zoom",e=>{if(GQ)GQ.attr("transform",e.transform)});
-let GL=null,GQ=null;
-let PROJL=null,PROJQ=null;
-
+let GL=null,GQ=null,PROJL=null,PROJQ=null;
 let QS={active:false,queue:[],ok:0,bad:0,streak:0,start:null,iv:null,cur:null,player:"",wrongThisQ:0};
 let ANSWERED=new Set();
+let _lbFilter="all";
+window._lbFilter="all";
 
 function pad(id){return String(id).padStart(3,"0");}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
-
-function rebuildISO(){
-  ISO_MAP={};DISP_ISO={};
-  CONTINENTS[CUR].countries.forEach(c=>ISO_MAP[c.iso]=c);
-  (DISPLAY_ONLY[CUR]||[]).forEach(c=>DISP_ISO[c.iso]=c);
-}
+function rebuildISO(){ISO_MAP={};DISP_ISO={};CONTINENTS[CUR].countries.forEach(c=>ISO_MAP[c.iso]=c);(DISPLAY_ONLY[CUR]||[]).forEach(c=>DISP_ISO[c.iso]=c);}
 
 function switchContinent(key,btn){
   if(QS.active)giveUp();
-  CUR=key;
-  ANSWERED.clear();
+  CUR=key;ANSWERED.clear();
   document.querySelectorAll(".ctab").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
   document.getElementById("mainTitle").textContent=CONTINENTS[key].emoji+" "+CONTINENTS[key].label+"地圖測驗";
@@ -468,280 +411,116 @@ function switchContinent(key,btn){
   if(WF){buildLearnMap();buildQuizMap();}
 }
 
+// ── ZOOM ──
 function zmL(f){d3.select("#learnSVG").transition().duration(200).call(ZL.scaleBy,f);}
 function rstL(){d3.select("#learnSVG").transition().duration(260).call(ZL.transform,d3.zoomIdentity);}
 function zmQ(f){d3.select("#quizSVG").transition().duration(200).call(ZQ.scaleBy,f);}
 function rstQ(){d3.select("#quizSVG").transition().duration(260).call(ZQ.transform,d3.zoomIdentity);}
 
+// ── TOOLTIP ──
 let tipTmr={};
 function showTip(tipId,svgId,name,event){
-  const svgEl=document.getElementById(svgId);
-  const t=document.getElementById(tipId);
-  const [mx,my]=d3.pointer(event,svgEl);
-  const r=svgEl.getBoundingClientRect();
-  const sx=r.width/svgEl.viewBox.baseVal.width;
-  const sy=r.height/svgEl.viewBox.baseVal.height;
-  t.textContent=name;
-  t.style.left=Math.min(mx*sx+8,r.width-140)+"px";
-  t.style.top=Math.max(my*sy-32,4)+"px";
-  t.style.opacity="1";
-  clearTimeout(tipTmr[tipId]);
-  tipTmr[tipId]=setTimeout(()=>t.style.opacity="0",2200);
+  const svgEl=document.getElementById(svgId),t=document.getElementById(tipId);
+  const [mx,my]=d3.pointer(event,svgEl),r=svgEl.getBoundingClientRect();
+  const sx=r.width/svgEl.viewBox.baseVal.width,sy=r.height/svgEl.viewBox.baseVal.height;
+  t.textContent=name;t.style.left=Math.min(mx*sx+8,r.width-140)+"px";
+  t.style.top=Math.max(my*sy-32,4)+"px";t.style.opacity="1";
+  clearTimeout(tipTmr[tipId]);tipTmr[tipId]=setTimeout(()=>t.style.opacity="0",2200);
 }
 
+// ── BUILD LEARN MAP ──
 function buildLearnMap(){
   const cont=CONTINENTS[CUR],cfg=cont.cfg;
   const svgEl=document.getElementById("learnSVG");
   svgEl.style.display="block";
-  const ld=document.getElementById("learnLoading");
-  if(ld)ld.style.display="none";
+  const ld=document.getElementById("learnLoading");if(ld)ld.style.display="none";
   svgEl.setAttribute("viewBox",`0 0 ${cfg.vw} ${cfg.vh}`);
-
   const proj=d3.geoMercator().center(cfg.cx).scale(cfg.sc).translate([cfg.vw/2,cfg.vh/2]);
-  PROJL=proj;
-  const path=d3.geoPath().projection(proj);
-  const svg=d3.select(svgEl);
-  svg.selectAll("*").remove();
+  PROJL=proj;const path=d3.geoPath().projection(proj);
+  const svg=d3.select(svgEl);svg.selectAll("*").remove();
   svg.append("rect").attr("width",cfg.vw).attr("height",cfg.vh).attr("class","water");
   const g=svg.append("g");GL=g;
-
-  g.selectAll("path.land-out")
-    .data(WF.filter(f=>{const iso=pad(f.id);return !ISO_MAP[iso]&&!DISP_ISO[iso];}))
-    .join("path").attr("class","land-out").attr("d",path);
-
-  g.selectAll("path.land-disp")
-    .data(WF.filter(f=>!!DISP_ISO[pad(f.id)]))
-    .join("path").attr("class","land-disp").attr("d",path);
-
-  const dispArr=DISPLAY_ONLY[CUR]||[];
-  g.selectAll("text.disp-lbl")
-    .data(dispArr.filter(d=>d.lp))
-    .join("text").attr("class","disp-lbl")
-    .attr("x",d=>proj(d.lp)[0]).attr("y",d=>proj(d.lp)[1])
-    .text(d=>d.n);
-
-  g.selectAll("path.land-in")
-    .data(WF.filter(f=>!!ISO_MAP[pad(f.id)]))
-    .join("path").attr("class","land-in")
-    .attr("d",path).attr("data-iso",f=>pad(f.id))
-    .on("click",function(event,f){
-      const c=ISO_MAP[pad(f.id)];if(c)showTip("learnTip","learnSVG",c.n,event);
-    })
-    .on("mousemove",function(event,f){
-      const c=ISO_MAP[pad(f.id)];if(c)showTip("learnTip","learnSVG",c.n,event);
-    });
-
+  g.selectAll("path.land-out").data(WF.filter(f=>{const iso=pad(f.id);return !ISO_MAP[iso]&&!DISP_ISO[iso];})).join("path").attr("class","land-out").attr("d",path);
+  g.selectAll("path.land-disp").data(WF.filter(f=>!!DISP_ISO[pad(f.id)])).join("path").attr("class","land-disp").attr("d",path);
+  g.selectAll("text.disp-lbl").data((DISPLAY_ONLY[CUR]||[]).filter(d=>d.lp)).join("text").attr("class","disp-lbl").attr("x",d=>proj(d.lp)[0]).attr("y",d=>proj(d.lp)[1]).text(d=>d.n);
+  g.selectAll("path.land-in").data(WF.filter(f=>!!ISO_MAP[pad(f.id)])).join("path").attr("class","land-in").attr("d",path).attr("data-iso",f=>pad(f.id))
+    .on("click",function(event,f){const c=ISO_MAP[pad(f.id)];if(c)showTip("learnTip","learnSVG",c.n,event);})
+    .on("mousemove",function(event,f){const c=ISO_MAP[pad(f.id)];if(c)showTip("learnTip","learnSVG",c.n,event);});
   g.append("path").datum(WB).attr("class","borders").attr("d",path);
-
-  const ll=cont.latlng||{};
-  const smalls=cont.countries.filter(c=>c.sm&&ll[c.iso]);
-  g.selectAll("circle.dot-sm")
-    .data(smalls).join("circle").attr("class","dot-sm")
-    .attr("cx",c=>proj(ll[c.iso])[0]).attr("cy",c=>proj(ll[c.iso])[1])
-    .attr("r",5).attr("fill","var(--small)")
+  const ll=cont.latlng||{},smalls=cont.countries.filter(c=>c.sm&&ll[c.iso]);
+  g.selectAll("circle.dot-sm").data(smalls).join("circle").attr("class","dot-sm")
+    .attr("cx",c=>proj(ll[c.iso])[0]).attr("cy",c=>proj(ll[c.iso])[1]).attr("r",5).attr("fill","var(--small)")
     .on("click",function(event,c){event.stopPropagation();showTip("learnTip","learnSVG",c.n,event);})
     .on("mousemove",function(event,c){showTip("learnTip","learnSVG",c.n,event);});
-
-  const lo=cont.labelOff||{};
-  const lp=cont.labelPos||{};
-  const sl=cont.smallLbl||{};
-
-  function estW(text,fsz){return text.length*fsz*0.62;}
-  function estH(fsz){return fsz*1.2;}
-
-  const nodes=[];
-  const manualDrawn=new Set();
-
+  const lo=cont.labelOff||{},lp=cont.labelPos||{},sl=cont.smallLbl||{};
+  function estW(t,f){return t.length*f*0.62;}function estH(f){return f*1.2;}
+  const nodes=[],manualDrawn=new Set();
   smalls.forEach(c=>{
-    const off=lo[c.iso];
-    if(!(off&&off[3]))return;
-    const [cx,cy]=proj(ll[c.iso]);
-    const dx=off[0],dy=off[1];
-    const drawLine=off[2]===true;
-    const tx=cx+dx,ty=cy+dy;
-    if(drawLine){
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist>6){
-        const dotR=5,gap=2,frac=Math.min(dotR/dist,0.4);
-        g.append("line")
-          .attr("x1",cx+dx*frac).attr("y1",cy+dy*frac)
-          .attr("x2",tx-(dx/dist)*gap).attr("y2",ty-(dy/dist)*gap)
-          .attr("stroke","#4a6a8a").attr("stroke-width","0.75")
-          .attr("stroke-dasharray","2,1.5").attr("pointer-events","none");
-      }
-    }
-    const anchor=dx<-2?"end":dx>2?"start":"middle";
-    g.append("text").attr("class","lbl-sm")
-      .attr("text-anchor",anchor).attr("x",tx).attr("y",ty)
-      .text(c.n);
+    const off=lo[c.iso];if(!(off&&off[3]))return;
+    const [cx,cy]=proj(ll[c.iso]),dx=off[0],dy=off[1],tx=cx+dx,ty=cy+dy;
+    if(off[2]===true){const dist=Math.sqrt(dx*dx+dy*dy);if(dist>6){const frac=Math.min(5/dist,0.4);g.append("line").attr("x1",cx+dx*frac).attr("y1",cy+dy*frac).attr("x2",tx-(dx/dist)*2).attr("y2",ty-(dy/dist)*2).attr("stroke","#4a6a8a").attr("stroke-width","0.75").attr("stroke-dasharray","2,1.5").attr("pointer-events","none");}}
+    const mfsz=(cont.smFontSize||{})[c.iso]||7.5;
+    g.append("text").attr("class","lbl-sm").attr("font-size",mfsz+"px").attr("text-anchor",dx<-2?"end":dx>2?"start":"middle").attr("x",tx).attr("y",ty).text(c.n);
     manualDrawn.add(c.iso);
   });
-
   smalls.forEach(c=>{
     if(manualDrawn.has(c.iso))return;
-    const [cx,cy]=proj(ll[c.iso]);
-    const off=lo[c.iso];
-    const dx=off?off[0]:0;
-    const dy=off?off[1]:-9;
-    const fsz=7.5;
-    const w=estW(c.n,fsz);
-    const h=estH(fsz);
-    nodes.push({iso:c.iso,text:c.n,ax:cx+dx,ay:cy+dy,dotX:cx,dotY:cy,w,h,fsz,isSm:true,isFixed:!!off,isLocked:false,userDx:dx,userDy:dy});
+    const [cx,cy]=proj(ll[c.iso]),off=lo[c.iso],dx=off?off[0]:0,dy=off?off[1]:-9,fsz=(cont.smFontSize||{})[c.iso]||7.5;
+    nodes.push({iso:c.iso,text:c.n,ax:cx+dx,ay:cy+dy,dotX:cx,dotY:cy,w:estW(c.n,fsz),h:estH(fsz),fsz,isSm:true,isFixed:!!off,isLocked:false,userDx:dx,userDy:dy});
   });
-
   cont.countries.filter(c=>!c.sm&&lp[c.iso]).forEach(c=>{
-    const [px,py]=proj(lp[c.iso]);
-    const bl=cont.bigLbl||{};
-    const fsz=sl[c.iso]?7:bl[c.iso]?bl[c.iso]:8.5;
-    const w=estW(c.n,fsz);
-    const h=estH(fsz);
-    const ll2=cont.lockedLbl||{};
-    nodes.push({iso:c.iso,text:c.n,ax:px,ay:py,dotX:px,dotY:py,w,h,fsz,isSm:false,isFixed:false,isLocked:!!ll2[c.iso],userDx:0,userDy:0});
+    const [px,py]=proj(lp[c.iso]),bl=cont.bigLbl||{},fsz=sl[c.iso]?7:bl[c.iso]?bl[c.iso]:8.5;
+    nodes.push({iso:c.iso,text:c.n,ax:px,ay:py,dotX:px,dotY:py,w:estW(c.n,fsz),h:estH(fsz),fsz,isSm:false,isFixed:false,isLocked:!!(cont.lockedLbl||{})[c.iso],userDx:0,userDy:0});
   });
-
-  function bbox(n){
-    const hw=n.w/2,hh=n.h/2;
-    let lx;
-    if(n.isSm){
-      const adx=n.ax-n.dotX;
-      if(adx<-2)lx=n.ax-n.w;
-      else if(adx>2)lx=n.ax;
-      else lx=n.ax-hw;
-    }else{lx=n.ax-hw;}
-    return{x1:lx,y1:n.ay-hh,x2:lx+n.w,y2:n.ay+hh};
-  }
-
-  function overlaps(a,b){
-    const ba=bbox(a),bb=bbox(b),pad=1.5;
-    return ba.x1<bb.x2+pad&&ba.x2>bb.x1-pad&&ba.y1<bb.y2+pad&&ba.y2>bb.y1-pad;
-  }
-
-  const ITERS=60,PUSH_SCALE=0.55,FIXED_DAMP=0.25;
-  for(let iter=0;iter<ITERS;iter++){
-    for(let i=0;i<nodes.length;i++){
-      for(let j=i+1;j<nodes.length;j++){
-        const a=nodes[i],b=nodes[j];
-        if(!overlaps(a,b))continue;
-        const ba=bbox(a),bb=bbox(b);
-        const ox=Math.min(ba.x2,bb.x2)-Math.max(ba.x1,bb.x1);
-        const oy=Math.min(ba.y2,bb.y2)-Math.max(ba.y1,bb.y1);
-        let pushX=0,pushY=0;
-        if(ox<oy){pushX=(ba.x1+ba.x2)/2<(bb.x1+bb.x2)/2?-ox:ox;}
-        else{pushY=(ba.y1+ba.y2)/2<(bb.y1+bb.y2)/2?-oy:oy;}
-        if(a.isLocked&&b.isLocked)continue;
-        const wa=a.isLocked?0:(a.isFixed?FIXED_DAMP:1);
-        const wb=b.isLocked?0:(b.isFixed?FIXED_DAMP:1);
-        const total=wa+wb||1;
-        if(!a.isLocked){a.ax-=pushX*(wb/total)*PUSH_SCALE;a.ay-=pushY*(wb/total)*PUSH_SCALE;}
-        if(!b.isLocked){b.ax+=pushX*(wa/total)*PUSH_SCALE;b.ay+=pushY*(wa/total)*PUSH_SCALE;}
-      }
-    }
-  }
-
-  const LEADER_THRESH=8;
+  function bbox(n){const hw=n.w/2,hh=n.h/2,adx=n.ax-n.dotX;let lx=n.isSm?(adx<-2?n.ax-n.w:adx>2?n.ax:n.ax-hw):n.ax-hw;return{x1:lx,y1:n.ay-hh,x2:lx+n.w,y2:n.ay+hh};}
+  function overlaps(a,b){const ba=bbox(a),bb=bbox(b),p=1.5;return ba.x1<bb.x2+p&&ba.x2>bb.x1-p&&ba.y1<bb.y2+p&&ba.y2>bb.y1-p;}
+  for(let iter=0;iter<60;iter++){for(let i=0;i<nodes.length;i++){for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j];if(!overlaps(a,b))continue;const ba=bbox(a),bb=bbox(b);const ox=Math.min(ba.x2,bb.x2)-Math.max(ba.x1,bb.x1),oy=Math.min(ba.y2,bb.y2)-Math.max(ba.y1,bb.y1);let px=0,py=0;if(ox<oy){px=(ba.x1+ba.x2)/2<(bb.x1+bb.x2)/2?-ox:ox;}else{py=(ba.y1+ba.y2)/2<(bb.y1+bb.y2)/2?-oy:oy;}if(a.isLocked&&b.isLocked)continue;const wa=a.isLocked?0:(a.isFixed?0.25:1),wb=b.isLocked?0:(b.isFixed?0.25:1),tot=wa+wb||1;if(!a.isLocked){a.ax-=px*(wb/tot)*0.55;a.ay-=py*(wb/tot)*0.55;}if(!b.isLocked){b.ax+=px*(wa/tot)*0.55;b.ay+=py*(wa/tot)*0.55;}}}}
   nodes.forEach(n=>{
     if(manualDrawn.has(n.iso))return;
-    const origX=n.dotX+n.userDx,origY=n.dotY+n.userDy;
-    const moved=Math.sqrt((n.ax-origX)**2+(n.ay-origY)**2);
-    const distFromDot=Math.sqrt((n.ax-n.dotX)**2+(n.ay-n.dotY)**2);
-    const needLine=(n.isFixed&&n.userDx*n.userDx+n.userDy*n.userDy>64)||(!n.isFixed&&distFromDot>LEADER_THRESH)||(n.isFixed&&moved>4);
-    if(needLine&&distFromDot>6){
-      const dist=Math.sqrt((n.ax-n.dotX)**2+(n.ay-n.dotY)**2);
-      const dotR=n.isSm?5:0,gap=2;
-      const frac=dist>0?Math.min(dotR/dist,0.4):0;
-      const lx1=n.dotX+(n.ax-n.dotX)*frac,ly1=n.dotY+(n.ay-n.dotY)*frac;
-      const lx2=n.ax-(n.ax-n.dotX)/dist*gap,ly2=n.ay-(n.ay-n.dotY)/dist*gap;
-      g.append("line").attr("x1",lx1).attr("y1",ly1).attr("x2",lx2).attr("y2",ly2)
-        .attr("stroke","#4a6a8a").attr("stroke-width","0.75")
-        .attr("stroke-dasharray","2,1.5").attr("pointer-events","none");
-    }
-    let anchor;
-    if(n.isSm){const adx=n.ax-n.dotX;anchor=adx<-2?"end":adx>2?"start":"middle";}
-    else{anchor="middle";}
-    g.append("text").attr("class",n.isSm?"lbl-sm":"lbl-lg")
-      .attr("font-size",n.fsz+"px").attr("text-anchor",anchor)
-      .attr("x",n.ax).attr("y",n.ay).text(n.text);
+    const dist=Math.sqrt((n.ax-n.dotX)**2+(n.ay-n.dotY)**2);
+    if(dist>6){const dotR=n.isSm?5:0,frac=dist>0?Math.min(dotR/dist,0.4):0;g.append("line").attr("x1",n.dotX+(n.ax-n.dotX)*frac).attr("y1",n.dotY+(n.ay-n.dotY)*frac).attr("x2",n.ax-(n.ax-n.dotX)/dist*2).attr("y2",n.ay-(n.ay-n.dotY)/dist*2).attr("stroke","#4a6a8a").attr("stroke-width","0.75").attr("stroke-dasharray","2,1.5").attr("pointer-events","none");}
+    const adx=n.ax-n.dotX;
+    g.append("text").attr("class",n.isSm?"lbl-sm":"lbl-lg").attr("font-size",n.fsz+"px").attr("text-anchor",n.isSm?(adx<-2?"end":adx>2?"start":"middle"):"middle").attr("x",n.ax).attr("y",n.ay).text(n.text);
   });
-
-  const extras=EXTRA_LABELS[CUR]||[];
-  extras.forEach(ex=>{
-    const [px,py]=proj(ex.lp);
-    ex.n.split("\n").forEach((line,i)=>{
-      g.append("text").attr("class","disp-lbl").attr("x",px).attr("y",py+i*14).attr("font-size","11px").text(line);
-    });
-  });
-
+  (EXTRA_LABELS[CUR]||[]).forEach(ex=>{const [px,py]=proj(ex.lp);ex.n.split("\n").forEach((line,i)=>{g.append("text").attr("class","disp-lbl").attr("x",px).attr("y",py+i*14).attr("font-size","11px").text(line);});});
   svg.call(ZL);
 }
 
+// ── BUILD QUIZ MAP ──
 function buildQuizMap(){
   const cont=CONTINENTS[CUR],cfg=cont.cfg;
-  const svgEl=document.getElementById("quizSVG");
-  svgEl.style.display="block";
-  const ld=document.getElementById("quizLoading");
-  if(ld)ld.style.display="none";
+  const svgEl=document.getElementById("quizSVG");svgEl.style.display="block";
+  const ld=document.getElementById("quizLoading");if(ld)ld.style.display="none";
   svgEl.setAttribute("viewBox",`0 0 ${cfg.vw} ${cfg.vh}`);
-
   const proj=d3.geoMercator().center(cfg.cx).scale(cfg.sc).translate([cfg.vw/2,cfg.vh/2]);
-  PROJQ=proj;
-  const path=d3.geoPath().projection(proj);
-  const svg=d3.select(svgEl);
-  svg.selectAll("*").remove();
+  PROJQ=proj;const path=d3.geoPath().projection(proj);
+  const svg=d3.select(svgEl);svg.selectAll("*").remove();
   svg.append("rect").attr("width",cfg.vw).attr("height",cfg.vh).attr("class","water");
   const g=svg.append("g");GQ=g;
-
-  g.selectAll("path.land-out")
-    .data(WF.filter(f=>{const iso=pad(f.id);return !ISO_MAP[iso]&&!DISP_ISO[iso];}))
-    .join("path").attr("class","land-out").attr("d",path);
-
-  g.selectAll("path.land-disp")
-    .data(WF.filter(f=>!!DISP_ISO[pad(f.id)]))
-    .join("path").attr("class","land-disp").attr("d",path);
-
-  g.selectAll("path.land-in")
-    .data(WF.filter(f=>!!ISO_MAP[pad(f.id)]))
-    .join("path").attr("class","land-in")
-    .attr("d",path).attr("data-iso",f=>pad(f.id))
-    .on("click",function(event,f){
-      const c=ISO_MAP[pad(f.id)];if(c)handleClick(c);
-    });
-
+  g.selectAll("path.land-out").data(WF.filter(f=>{const iso=pad(f.id);return !ISO_MAP[iso]&&!DISP_ISO[iso];})).join("path").attr("class","land-out").attr("d",path);
+  g.selectAll("path.land-disp").data(WF.filter(f=>!!DISP_ISO[pad(f.id)])).join("path").attr("class","land-disp").attr("d",path);
+  g.selectAll("path.land-in").data(WF.filter(f=>!!ISO_MAP[pad(f.id)])).join("path").attr("class","land-in").attr("d",path).attr("data-iso",f=>pad(f.id)).on("click",function(event,f){const c=ISO_MAP[pad(f.id)];if(c)handleClick(c);});
   g.append("path").datum(WB).attr("class","borders").attr("d",path);
-
-  const ll=cont.latlng||{};
-  const smalls=cont.countries.filter(c=>c.sm&&ll[c.iso]);
-  g.selectAll("circle.dot-sm")
-    .data(smalls).join("circle").attr("class","dot-sm")
-    .attr("cx",c=>proj(ll[c.iso])[0]).attr("cy",c=>proj(ll[c.iso])[1])
-    .attr("r",6).attr("fill","var(--small)")
-    .on("click",function(event,c){event.stopPropagation();handleClick(c);});
-
+  const ll=cont.latlng||{},smalls=cont.countries.filter(c=>c.sm&&ll[c.iso]);
+  g.selectAll("circle.dot-sm").data(smalls).join("circle").attr("class","dot-sm").attr("cx",c=>proj(ll[c.iso])[0]).attr("cy",c=>proj(ll[c.iso])[1]).attr("r",6).attr("fill","var(--small)").on("click",function(event,c){event.stopPropagation();handleClick(c);});
   ANSWERED.forEach(iso=>paintQ(iso,"land-correct",false));
-
-  const extras2=EXTRA_LABELS[CUR]||[];
-  extras2.forEach(ex=>{
-    const [px,py]=proj(ex.lp);
-    ex.n.split("\n").forEach((line,i)=>{
-      g.append("text").attr("class","disp-lbl").attr("x",px).attr("y",py+i*14).attr("font-size","11px").attr("opacity","0.55").text(line);
-    });
-  });
-
+  (EXTRA_LABELS[CUR]||[]).forEach(ex=>{const [px,py]=proj(ex.lp);ex.n.split("\n").forEach((line,i)=>{g.append("text").attr("class","disp-lbl").attr("x",px).attr("y",py+i*14).attr("font-size","11px").attr("opacity","0.55").text(line);});});
   svg.call(ZQ);
 }
 
+// ── PAINT ──
 function paintQ(iso,cls,temporary){
-  const el=d3.select("#quizSVG").select(`[data-iso="${iso}"]`);
-  el.classed(cls,true);
+  const el=d3.select("#quizSVG").select(`[data-iso="${iso}"]`);el.classed(cls,true);
   const c=ISO_MAP[iso];
   if(c&&c.sm){
-    const ll=CONTINENTS[CUR].latlng||{};
     const dot=d3.select("#quizSVG").selectAll("circle.dot-sm").filter(d=>d.iso===iso);
     const fillFor={"land-correct":"var(--green-land)","land-wrong":"var(--red-land)","land-reveal":"#e06050"};
     dot.style("fill",fillFor[cls]||"var(--small)");
-    if(temporary){setTimeout(()=>{if(!ANSWERED.has(iso)){el.classed(cls,false);dot.style("fill","var(--small)");}},1900);}
-  }else if(temporary){setTimeout(()=>{if(!ANSWERED.has(iso))el.classed(cls,false);},1900);}
+    if(temporary)setTimeout(()=>{if(!ANSWERED.has(iso)){el.classed(cls,false);dot.style("fill","var(--small)");}},1900);
+  }else if(temporary)setTimeout(()=>{if(!ANSWERED.has(iso))el.classed(cls,false);},1900);
 }
 
+// ── QUIZ LOGIC ──
 function startQuiz(){
   if(!WF){alert("地圖尚未載入！");return;}
   if(QS.active)giveUp();
@@ -750,87 +529,73 @@ function startQuiz(){
   d3.selectAll("#quizSVG .land-in").classed("land-correct land-wrong land-reveal",false);
   d3.selectAll("#quizSVG circle.dot-sm").style("fill",null);
   clearInterval(QS.iv);
-  QS.iv=setInterval(()=>{
-    const s=0|(Date.now()-QS.start)/1000;
-    document.getElementById("timer").textContent=String(0|s/60).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
-  },1000);
-  document.getElementById("scoreOk").textContent="0";
-  document.getElementById("scoreWrong").textContent="0";
-  document.getElementById("feedback").className="fb";
-  nextQ();
+  QS.iv=setInterval(()=>{const s=0|(Date.now()-QS.start)/1000;document.getElementById("timer").textContent=String(0|s/60).padStart(2,"0")+":"+String(s%60).padStart(2,"0");},1000);
+  document.getElementById("scoreOk").textContent="0";document.getElementById("scoreWrong").textContent="0";
+  document.getElementById("feedback").className="fb";nextQ();
 }
-
-function nextQ(){
-  if(!QS.queue.length){endQuiz();return;}
-  QS.cur=QS.queue.shift();QS.wrongThisQ=0;
-  document.getElementById("qName").textContent=QS.cur.n;
-  document.getElementById("scoreLeft").textContent=QS.queue.length+1;
-  document.getElementById("streak").textContent="🔥 連續 "+QS.streak+" 題";
-  document.getElementById("feedback").className="fb";
-}
-
+function nextQ(){if(!QS.queue.length){endQuiz();return;}QS.cur=QS.queue.shift();QS.wrongThisQ=0;document.getElementById("qName").textContent=QS.cur.n;document.getElementById("scoreLeft").textContent=QS.queue.length+1;document.getElementById("streak").textContent="🔥 連續 "+QS.streak+" 題";document.getElementById("feedback").className="fb";}
 function handleClick(country){
   if(!QS.active||!QS.cur)return;
   if(ANSWERED.has(country.iso)){setFB("hint","💡「"+country.n+"」已答對，這次不算");return;}
-  if(country.iso===QS.cur.iso){
-    QS.ok++;QS.streak++;
-    document.getElementById("scoreOk").textContent=QS.ok;
-    ANSWERED.add(country.iso);
-    paintQ(country.iso,"land-correct",false);
-    setFB("ok","✅ 正確！"+country.n);
-    document.getElementById("streak").textContent="🔥 連續 "+QS.streak+" 題";
-    setTimeout(nextQ,800);
-  }else{
-    QS.wrongThisQ++;QS.bad++;QS.streak=0;
-    document.getElementById("scoreWrong").textContent=QS.bad;
-    document.getElementById("streak").textContent="🔥 連續 0 題";
-    paintQ(country.iso,"land-wrong",true);
-    if(QS.wrongThisQ<3){setFB("bad","❌ 那是「"+country.n+"」，不對！再試一次（第"+QS.wrongThisQ+"次）");}
-    else{setFB("bad","❌ 那是「"+country.n+"」。正確答案以紅色標示 👇");paintQ(QS.cur.iso,"land-reveal",true);setTimeout(nextQ,2500);}
-  }
+  if(country.iso===QS.cur.iso){QS.ok++;QS.streak++;document.getElementById("scoreOk").textContent=QS.ok;ANSWERED.add(country.iso);paintQ(country.iso,"land-correct",false);setFB("ok","✅ 正確！"+country.n);document.getElementById("streak").textContent="🔥 連續 "+QS.streak+" 題";setTimeout(nextQ,800);}
+  else{QS.wrongThisQ++;QS.bad++;QS.streak=0;document.getElementById("scoreWrong").textContent=QS.bad;document.getElementById("streak").textContent="🔥 連續 0 題";paintQ(country.iso,"land-wrong",true);if(QS.wrongThisQ<3){setFB("bad","❌ 那是「"+country.n+"」，不對！再試一次（第"+QS.wrongThisQ+"次）");}else{setFB("bad","❌ 那是「"+country.n+"」。正確答案以紅色標示 👇");paintQ(QS.cur.iso,"land-reveal",true);setTimeout(nextQ,2500);}}
 }
-
 function setFB(cls,msg){const f=document.getElementById("feedback");f.textContent=msg;f.className="fb "+cls;}
 function skipQ(){if(!QS.active)return;QS.bad++;QS.streak=0;document.getElementById("scoreWrong").textContent=QS.bad;setFB("hint","⏭ 跳過「"+QS.cur.n+"」");nextQ();}
 function giveUp(){if(!QS.active)return;clearInterval(QS.iv);QS.active=false;document.getElementById("qName").textContent="—";document.getElementById("feedback").className="fb";}
-
 function endQuiz(){
   clearInterval(QS.iv);QS.active=false;
-  const total=QS.ok+QS.bad;
-  const pct=total?Math.round(QS.ok/total*100):0;
-  const t=document.getElementById("timer").textContent;
+  const total=QS.ok+QS.bad,pct=total?Math.round(QS.ok/total*100):0,t=document.getElementById("timer").textContent;
   document.getElementById("finalScore").textContent=pct+"分";
   document.getElementById("finalDetail").textContent=QS.player+" ∙ "+CONTINENTS[CUR].label+" ∙ 正確 "+QS.ok+"/"+total+" ∙ "+t;
   document.getElementById("rov").classList.add("show");
-  saveLB(QS.player,CONTINENTS[CUR].label,pct,t);renderLB();
+  saveLB(QS.player,CONTINENTS[CUR].label,CONTINENTS[CUR].emoji,pct,t);
 }
-
 function restartQuiz(){closeResult();startQuiz();}
 function closeResult(){document.getElementById("rov").classList.remove("show");}
 
-function saveLB(name,cont,score,time){
-  let lb=JSON.parse(localStorage.getItem("wq-lb4")||"[]");
-  lb.push({name,cont,score,time});lb.sort((a,b)=>b.score-a.score);
-  localStorage.setItem("wq-lb4",JSON.stringify(lb.slice(0,15)));
+// ── LEADERBOARD (cloud) ──
+function switchLB(filter,btn){
+  _lbFilter=filter;window._lbFilter=filter;
+  document.querySelectorAll(".lbtab").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  renderLB(filter);
 }
-function renderLB(){
-  const lb=JSON.parse(localStorage.getItem("wq-lb4")||"[]");
-  const tb=document.getElementById("lbBody");
-  if(!lb.length){tb.innerHTML='<tr><td colspan="5" style="color:var(--muted);text-align:center">尚無紀錄</td></tr>';return;}
-  tb.innerHTML=lb.map((r,i)=>`<tr><td>${["🥇","🥈","🥉"][i]||i+1}</td><td>${r.name}</td><td style="color:var(--muted)">${r.cont}</td><td style="color:var(--gold);font-weight:700">${r.score}分</td><td style="color:var(--muted)">${r.time}</td></tr>`).join("");
-}
-function clearLB(){if(confirm("確定清除？")){localStorage.removeItem("wq-lb4");renderLB();}}
 
+window.renderLB=function(filter){
+  filter=filter||_lbFilter||"all";
+  if(!window._fbReady||!window._db){
+    document.getElementById("lbBody").innerHTML='<tr><td colspan="5" style="color:var(--muted);text-align:center">連線中…</td></tr>';
+    return;
+  }
+  const fs=window._fs,col=window._col;
+  let q;
+  if(filter==="all"){q=fs.query(col,fs.orderBy("score","desc"),fs.orderBy("time","asc"),fs.limit(15));}
+  else{const labelMap={asia:"亞洲",europe:"歐洲",africa:"非洲",americas:"中南美洲"};q=fs.query(col,fs.where("cont","==",labelMap[filter]),fs.orderBy("score","desc"),fs.orderBy("time","asc"),fs.limit(15));}
+  fs.onSnapshot(q,snap=>{
+    const tb=document.getElementById("lbBody");
+    if(snap.empty){tb.innerHTML='<tr><td colspan="5" style="color:var(--muted);text-align:center">尚無紀錄</td></tr>';return;}
+    tb.innerHTML=snap.docs.map((doc,i)=>{const r=doc.data();return`<tr><td>${["🥇","🥈","🥉"][i]||i+1}</td><td>${r.name}</td><td style="color:var(--muted)">${r.emoji||""}${r.cont}</td><td style="color:var(--gold);font-weight:700">${r.score}分</td><td style="color:var(--muted)">${r.time}</td></tr>`;}).join("");
+  });
+};
+
+async function saveLB(name,cont,emoji,score,time){
+  if(!window._fbReady||!window._db)return;
+  try{
+    await window._fs.addDoc(window._col,{name,cont,emoji,score,time,ts:window._fs.serverTimestamp()});
+    renderLB(_lbFilter);
+  }catch(e){console.error("排行榜儲存失敗",e);}
+}
+
+// ── INIT ──
 async function init(){
   let world;
   try{world=await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");}
-  catch(e){
-    ["learnLoading","quizLoading"].forEach(id=>{const el=document.getElementById(id);el.textContent="⚠️ 地圖載入失敗，請重新整理";el.style.color="var(--red)";});
-    return;
-  }
+  catch(e){["learnLoading","quizLoading"].forEach(id=>{const el=document.getElementById(id);el.textContent="⚠️ 地圖載入失敗，請重新整理";el.style.color="var(--red)";});return;}
   WF=topojson.feature(world,world.objects.countries).features;
   WB=topojson.mesh(world,world.objects.countries,(a,b)=>a!==b);
-  rebuildISO();buildLearnMap();buildQuizMap();renderLB();
+  buildAllContinent();
+  rebuildISO();buildLearnMap();buildQuizMap();
 }
 init();
 </script>
